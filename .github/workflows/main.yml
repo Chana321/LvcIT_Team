@@ -1,0 +1,42 @@
+name: Build LvcIT Team APK
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.7'
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Build APK (Release)
+        run: flutter build apk --release
+
+   
+      - name: Rename APK
+        run: |
+          mv build/app/outputs/flutter-apk/app-release.apk \
+             build/app/outputs/flutter-apk/LvcIT_Team.apk
+
+      - name: Upload APK to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: LvcIT Team APK
+          files: build/app/outputs/flutter-apk/LvcIT_Team.apk
