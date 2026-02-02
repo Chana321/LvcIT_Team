@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'teamproject/best.dart';
-//import 'teamproject/oat.dart';
-//import 'teamproject/pom.dart';
+import 'teamproject/best.dart';
+import 'teamproject/oat.dart';
+import 'teamproject/pom.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text("Team Showcase")),
       body: SingleChildScrollView(
         child: Center(
-          //        child: Column(children: const [Member1(), Member2(), Member3()]),
+          child: Column(children: const [Member1(), Member2(), Member3()]),
         ),
       ),
     );
